@@ -8,7 +8,7 @@ npx @ungoldman/serve
 
 This is a fork of [vercel/serve](https://github.com/vercel/serve) published under a different namespace (`@ungoldman/serve`).
 
-The fork was created because I needed a version of serve that opens the URL it serves, and the maintainers of serve have made a decision not to do that.
+The fork was created because I needed a version of serve that opens the URL it serves, and the maintainers of serve have stuck with the decision to not do that (see https://github.com/vercel/serve/issues/116, https://github.com/vercel/serve/issues/425, https://github.com/vercel/serve/issues/454, https://github.com/vercel/serve/issues/588).
 
 ## Differences between this and [vercel/serve](https://github.com/vercel/serve)
 
