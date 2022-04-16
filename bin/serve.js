@@ -19,6 +19,7 @@ const handler = require('serve-handler');
 const schema = require('@zeit/schemas/deployment/config-static');
 const boxen = require('boxen');
 const compression = require('compression');
+const open = require('open');
 
 // Utilities
 const pkg = require('../package');
@@ -94,14 +95,16 @@ const getHelp = () => chalk`
       --no-etag                           Send \`Last-Modified\` header instead of \`ETag\`
 
       -S, --symlinks                      Resolve symlinks instead of showing 404 errors
-	  
+
 	  --ssl-cert                          Optional path to an SSL/TLS certificate to serve with HTTPS
-	  
+
 	  --ssl-key                           Optional path to the SSL/TLS certificate\'s private key
 
 	  --ssl-pass                          Optional path to the SSL/TLS certificate\'s passphrase
 
       --no-port-switching                 Do not open a port other than the one specified when it\'s taken.
+
+      --no-open                           Do not open in browser on start.
 
   {bold ENDPOINTS}
 
@@ -190,6 +193,7 @@ const startEndpoint = (endpoint, config, args, previous) => {
 	const clipboard = args['--no-clipboard'] !== true;
 	const compress = args['--no-compression'] !== true;
 	const httpMode = args['--ssl-cert'] && args['--ssl-key'] ? 'https' : 'http';
+	const shouldOpen = args['--no-open'] !== true;
 
 	const serverHandler = async (request, response) => {
 		if (args['--cors']) {
@@ -264,6 +268,10 @@ const startEndpoint = (endpoint, config, args, previous) => {
 				} catch (err) {
 					console.error(error(`Cannot copy to clipboard: ${err.message}`));
 				}
+			}
+
+			if (shouldOpen) {
+				open(localAddress);
 			}
 
 			console.log(boxen(message, {
@@ -379,6 +387,7 @@ const loadConfig = async (cwd, entry, args) => {
 			'--no-clipboard': Boolean,
 			'--no-compression': Boolean,
 			'--no-etag': Boolean,
+			'--no-open': Boolean,
 			'--symlinks': Boolean,
 			'--cors': Boolean,
 			'--no-port-switching': Boolean,
