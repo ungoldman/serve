@@ -18,7 +18,7 @@ The fork was created because I needed a version of serve that opens the URL it s
 
 I'll make an effort to keep this in sync with upstream, but... no promises!
 
-See serve's [documentation](https://github.com/ungoldman/serve#usage) for extended installation & usage info.
+See serve's [documentation](https://github.com/vercel/serve#usage) for extended installation & usage info.
 
 ## License
 
