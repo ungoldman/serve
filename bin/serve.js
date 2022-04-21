@@ -88,7 +88,7 @@ const getHelp = () => chalk`
 
       -C, --cors                          Enable CORS, sets \`Access-Control-Allow-Origin\` to \`*\`
 
-      -n, --no-clipboard                  Do not copy the local address to the clipboard
+      --clipboard                         Copy the local address to the clipboard
 
       -u, --no-compression                Do not compress files
 
@@ -190,7 +190,7 @@ const getNetworkAddress = () => {
 
 const startEndpoint = (endpoint, config, args, previous) => {
 	const {isTTY} = process.stdout;
-	const clipboard = args['--no-clipboard'] !== true;
+	const clipboard = args['--clipboard'] === true;
 	const compress = args['--no-compression'] !== true;
 	const httpMode = args['--ssl-cert'] && args['--ssl-key'] ? 'https' : 'http';
 	const shouldOpen = args['--no-open'] !== true;
@@ -384,7 +384,7 @@ const loadConfig = async (cwd, entry, args) => {
 			'--single': Boolean,
 			'--debug': Boolean,
 			'--config': String,
-			'--no-clipboard': Boolean,
+			'--clipboard': Boolean,
 			'--no-compression': Boolean,
 			'--no-etag': Boolean,
 			'--no-open': Boolean,
@@ -400,7 +400,6 @@ const loadConfig = async (cwd, entry, args) => {
 			'-s': '--single',
 			'-d': '--debug',
 			'-c': '--config',
-			'-n': '--no-clipboard',
 			'-u': '--no-compression',
 			'-S': '--symlinks',
 			'-C': '--cors',
