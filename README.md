@@ -14,7 +14,7 @@ The fork was created because I needed a version of serve that opens the URL it s
 
 - Opens the URL on start by default
 - Adds a `--no-open` option to disable this behavior
-- That's it
+- Changes `--no-clipboard` option to `--clipboard` (now off by default)
 
 I'll make an effort to keep this in sync with upstream, but... no promises!
 
